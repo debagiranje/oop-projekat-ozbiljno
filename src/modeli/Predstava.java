@@ -23,6 +23,11 @@ public class Predstava {
 	public void setZanr(Zanr zanr) {
 		this.zanr = zanr;
 	}
+	public Predstava(String naziv, Zanr zanr) {
+		super();
+		this.naziv = naziv;
+		this.zanr = zanr;
+	}
 	public Predstava(int id, String naziv, Zanr zanr) {
 		super();
 		this.id = id;

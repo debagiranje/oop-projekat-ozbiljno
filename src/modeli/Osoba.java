@@ -13,6 +13,11 @@ public abstract class Osoba {
 	public int getId() {
 		return id;
 	}
+	public Osoba(String ime, String prezime) {
+		super();
+		this.ime = ime;
+		this.prezime = prezime;
+	}
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -27,6 +32,10 @@ public abstract class Osoba {
 	}
 	public void setPrezime(String prezime) {
 		this.prezime = prezime;
+	}
+	@Override
+	public String toString() {
+		return "Osoba id=" + id + ", ime=" + ime + ", prezime=" + prezime;
 	}
 	
 

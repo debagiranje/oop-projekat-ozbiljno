@@ -15,6 +15,12 @@ public class Pozoriste {
 	public int getId() {
 		return id;
 	}
+	public Pozoriste(String naziv, String grad, int brojSjedista) {
+		super();
+		this.naziv = naziv;
+		this.grad = grad;
+		this.brojSjedista = brojSjedista;
+	}
 	public void setId(int id) {
 		this.id = id;
 	}

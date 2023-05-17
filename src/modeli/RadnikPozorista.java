@@ -9,6 +9,12 @@ public class RadnikPozorista extends Korisnik{
 		super(id, ime, prezime, korisnickoIme, lozinka);
 		this.pozoristeID = pozoristeID;
 	}
+	
+	public RadnikPozorista(String ime, String prezime, String korisnickoIme, String lozinka,
+			Pozoriste pozoristeID) {
+		super(ime, prezime, korisnickoIme, lozinka);
+		this.pozoristeID = pozoristeID;
+	}
 
 	public Pozoriste getPozoristeID() {
 		return pozoristeID;

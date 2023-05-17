@@ -12,9 +12,11 @@ public class Veza {
 	private static int port = 3306;
 	private static String DBname = "projekat_juhu";
 	private static Connection veza = null;
+	
 
-    public static Connection vratiVezu() {
+    public static Connection vratiVezu() throws SQLException {
         if (veza != null) {
+        	veza.setAutoCommit(true);
             return veza;
         } else {
             try {

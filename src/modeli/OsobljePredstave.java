@@ -9,6 +9,11 @@ public class OsobljePredstave {
 		this.OsobljeID = osobljeID;
 		this.PredstavaID = predstavaID;
 	}
+	public OsobljePredstave(Osoblje osobljeID, Predstava predstavaID) {
+		super();
+		OsobljeID = osobljeID;
+		PredstavaID = predstavaID;
+	}
 	public int getId() {
 		return id;
 	}

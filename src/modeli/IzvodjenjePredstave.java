@@ -18,6 +18,25 @@ public class IzvodjenjePredstave {
 		this.cijena = cijena;
 		this.datumVrijeme = datumVrijeme;
 	}
+	
+	
+
+	public IzvodjenjePredstave(Predstava predstavaID, Pozoriste pozoristeID, double cijena,
+			LocalDateTime datumVrijeme) {
+		super();
+		this.predstavaID = predstavaID;
+		this.pozoristeID = pozoristeID;
+		this.cijena = cijena;
+		this.datumVrijeme = datumVrijeme;
+	}
+
+
+
+	public IzvodjenjePredstave(int int1) {
+		// TODO Auto-generated constructor stub
+	}
+
+
 
 	public int getId() {
 		return id;

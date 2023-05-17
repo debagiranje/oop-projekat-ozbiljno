@@ -1,18 +1,20 @@
 package baza;
 
-import java.util.Optional;
+
 import java.util.ArrayList;
 
 public interface BazaCRUD<T> {
 	
-	Optional<T> vratiPoId(long id);
+	T vratiPoId(int id);
     
     ArrayList<T> vratiSve();
     
-    //void sacuvaj(T model);
+    void dodaj(T obj);
     
-    void azuriraj(T model);
+    void azuriraj(T obj);
     
     void obrisiPoId(int id);
+    
+    void obrisiSve();
 
 }

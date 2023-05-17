@@ -12,6 +12,12 @@ public abstract class Korisnik extends Osoba{
 		this.lozinka = lozinka;
 	}
 
+	public Korisnik(String ime, String prezime, String korisnickoIme, String lozinka) {
+		super(ime, prezime);
+		this.korisnickoIme = korisnickoIme;
+		this.lozinka = lozinka;
+	}
+
 	public String getKorisnickoIme() {
 		return korisnickoIme;
 	}

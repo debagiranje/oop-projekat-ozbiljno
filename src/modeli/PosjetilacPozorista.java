@@ -5,6 +5,10 @@ public class PosjetilacPozorista extends Korisnik{
 	public PosjetilacPozorista(int id, String ime, String prezime, String korisnickoIme, String lozinka) {
 		super(id, ime, prezime, korisnickoIme, lozinka);
 	}
+	
+	public PosjetilacPozorista(String ime, String prezime, String korisnickoIme, String lozinka) {
+		super(ime, prezime, korisnickoIme, lozinka);
+	}
 
 	@Override
 	public String getKorisnickoIme() {

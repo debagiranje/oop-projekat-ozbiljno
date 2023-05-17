@@ -11,6 +11,7 @@ public enum Status {
 	Status(int broj){
 		this.broj = broj;
 	}
+	
 	public static Status getEnum(int broj){
 		switch(broj) {
 			case 1: return Status.KUPLJENA_NPA;

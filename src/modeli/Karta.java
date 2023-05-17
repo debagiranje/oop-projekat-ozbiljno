@@ -9,8 +9,23 @@ public class Karta {
 	public int getId() {
 		return id;
 	}
+	public Karta(int id, IzvodjenjePredstave ipID, Status status, PosjetilacPozorista ppID, int brojKarta) {
+		super();
+		this.id = id;
+		this.ipID = ipID;
+		this.status = status;
+		this.ppID = ppID;
+		this.brojKarta = brojKarta;
+	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public Karta(IzvodjenjePredstave ipID, Status status, PosjetilacPozorista ppID, int brojKarta) {
+		super();
+		this.ipID = ipID;
+		this.status = status;
+		this.ppID = ppID;
+		this.brojKarta = brojKarta;
 	}
 	public IzvodjenjePredstave getIpID() {
 		return ipID;
