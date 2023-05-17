@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #f2e9e4;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kontroleri.PosjetilacPogledController">
+   <children>
+      <Pane prefHeight="600.0" prefWidth="220.0" style="-fx-background-color: #22223b;">
+         <children>
+            <Label layoutX="12.0" layoutY="34.0" prefHeight="34.0" prefWidth="197.0" text="POZORIŠTANCE" textFill="#f2e9e4" textOverrun="LEADING_ELLIPSIS">
+               <font>
+                  <Font name="Segoe UI Bold" size="26.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="71.0" layoutY="82.0">
+               <image>
+                  <Image url="@../../../../Downloads/theatre(1).png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnKarte" layoutX="-6.0" layoutY="228.0" mnemonicParsing="false" onAction="#prebaciKarte" prefHeight="36.0" prefWidth="220.0" style="-fx-background-color: #22223b;" text="KARTE" textAlignment="CENTER" textFill="#f2e9e4">
+               <font>
+                  <Font name="Segoe UI Italic" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnPozorista" layoutX="-6.0" layoutY="282.0" mnemonicParsing="false" onAction="#prebaciPozorista" prefHeight="36.0" prefWidth="220.0" style="-fx-background-color: #22223b;" text="POZORIŠTA" textFill="#f2e9e4">
+               <font>
+                  <Font name="Segoe UI Italic" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnOsoblje" layoutX="-6.0" layoutY="335.0" mnemonicParsing="false" onAction="#prebaciOsoblje" prefHeight="36.0" prefWidth="220.0" style="-fx-background-color: #22223b;" text="OSOBLJE" textFill="#f2e9e4">
+               <font>
+                  <Font name="Segoe UI Bold Italic" size="18.0" />
+               </font>
+            </Button>
+            <Button id="BTNUloguj" fx:id="btnIzloguj" layoutX="44.0" layoutY="501.0" mnemonicParsing="false" onAction="#izloguj" prefHeight="49.0" prefWidth="120.0" style="-fx-background-color: #c9ada7; -fx-background-radius: 20;" text="IZLOGUJ ME" textFill="#22223b">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Label layoutX="236.0" layoutY="34.0" prefHeight="34.0" prefWidth="197.0" text="Dobar dan!" textFill="#764f72" textOverrun="LEADING_ELLIPSIS">
+         <font>
+            <Font name="Segoe UI Bold" size="26.0" />
+         </font>
+      </Label>
+      <Label layoutX="236.0" layoutY="68.0" prefHeight="34.0" prefWidth="254.0" text="Pregled osoblja:" textFill="#22223b" textOverrun="LEADING_ELLIPSIS">
+         <font>
+            <Font name="Segoe UI Bold" size="24.0" />
+         </font>
+      </Label>
+      <HBox layoutX="335.0" layoutY="208.0" prefHeight="317.0" prefWidth="422.0">
+         <children>
+            <TableView fx:id="tabelaOsoblje" prefHeight="318.0" prefWidth="423.0">
+              <columns>
+                <TableColumn prefWidth="112.0" text="Ime" />
+                <TableColumn minWidth="1.5999755859375" prefWidth="101.5999755859375" text="Prezime" />
+                  <TableColumn prefWidth="208.7999755859375" text="Učestvuje u predstavi" />
+              </columns>
+            </TableView>
+         </children></HBox>
+      <HBox layoutX="273.0" layoutY="132.0" prefHeight="50.0" prefWidth="546.0">
+         <children>
+            <Button id="BTNUloguj" fx:id="btnGlumac" mnemonicParsing="false" onAction="#glumac" prefHeight="49.0" prefWidth="120.0" style="-fx-background-color: #c9ada7; -fx-background-radius: 20;" text="Glumci" textFill="#22223b">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+            </Button>
+            <Separator orientation="VERTICAL" prefHeight="100.0" prefWidth="28.0" />
+            <Button id="BTNUloguj" fx:id="btnReziser" mnemonicParsing="false" onAction="#reziser" prefHeight="49.0" prefWidth="120.0" style="-fx-background-color: #c9ada7; -fx-background-radius: 20;" text="Režiseri" textFill="#22223b">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+            </Button>
+            <Separator orientation="VERTICAL" prefHeight="100.0" prefWidth="28.0" />
+            <Button id="BTNUloguj" fx:id="btnAutor" mnemonicParsing="false" onAction="#autor" prefHeight="49.0" prefWidth="120.0" style="-fx-background-color: #c9ada7; -fx-background-radius: 20;" text="Autori" textFill="#22223b">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+            </Button>
+            <Separator orientation="VERTICAL" prefHeight="100.0" prefWidth="28.0" />
+            <Button id="BTNUloguj" fx:id="btnSvoOsoblje" mnemonicParsing="false" onAction="#svoOsoblje" prefHeight="49.0" prefWidth="120.0" style="-fx-background-color: #c9ada7; -fx-background-radius: 20;" text="Svo Osoblje" textFill="#22223b">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
