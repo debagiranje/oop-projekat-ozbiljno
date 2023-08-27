@@ -3,16 +3,15 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #f2e9e4;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kontroleri.PosjetilacPogledController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #f2e9e4;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kontroleri.posjetilac.PosjetilacPogledController">
    <children>
       <Pane prefHeight="600.0" prefWidth="220.0" style="-fx-background-color: #22223b;">
          <children>
@@ -26,7 +25,7 @@
                   <Image url="@../../../../Downloads/theatre(1).png" />
                </image>
             </ImageView>
-            <Button fx:id="btnKarte" layoutX="-6.0" layoutY="228.0" mnemonicParsing="false" onAction="#prebaciKarte" prefHeight="36.0" prefWidth="220.0" style="-fx-background-color: #22223b;" text="KARTE" textAlignment="CENTER" textFill="#f2e9e4">
+            <Button fx:id="btnKarte" layoutX="-6.0" layoutY="228.0" mnemonicParsing="false" onAction="#prebaciKarte" prefHeight="36.0" prefWidth="220.0" style="-fx-background-color: #22223b;" text="REZERVACIJE" textAlignment="CENTER" textFill="#f2e9e4">
                <font>
                   <Font name="Segoe UI Bold Italic" size="18.0" />
                </font>
@@ -58,24 +57,7 @@
             <Font name="Segoe UI Bold" size="24.0" />
          </font>
       </Label>
-      <HBox layoutX="236.0" layoutY="140.0" prefHeight="277.0" prefWidth="643.0">
-         <children>
-            <ListView fx:id="listaTrenutneK" onMouseClicked="#urediKarte" prefHeight="278.0" prefWidth="320.0" />
-            <ListView fx:id="listaPrethodneK" prefHeight="278.0" prefWidth="327.0" />
-         </children>
-      </HBox>
-      <Label layoutX="236.0" layoutY="118.0" text="Vaše rezervisane karte" textFill="#22223b">
-         <font>
-            <Font name="Segoe UI Semibold Italic" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="558.0" layoutY="118.0" text="Prethodno rezervisane karte" textFill="#764f72">
-         <font>
-            <Font name="Segoe UI Semibold" size="14.0" />
-         </font>
-      </Label>
-      <TextField fx:id="status48" editable="false" layoutX="236.0" layoutY="453.0" prefHeight="20.0" prefWidth="514.0" text="Trenutno nemate nepreuzetih, rezervisanih karata za predstave koje se izvode u narednih 48h." />
-      <Label layoutX="236.0" layoutY="433.0" text="Status karata" textFill="#764f72">
+      <Label layoutX="235.0" layoutY="395.0" prefHeight="20.0" prefWidth="220.0" text="Karte za preuzeti u narednih 48 h" textFill="#764f72">
          <font>
             <Font name="Segoe UI Semibold" size="14.0" />
          </font>
@@ -85,5 +67,20 @@
             <Font name="Segoe UI Semibold" size="14.0" />
          </font>
       </Button>
+      <TabPane layoutX="232.0" layoutY="126.0" prefHeight="252.0" prefWidth="650.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="tabTekuce" onSelectionChanged="#popuniTekuceRezervacije" text="Tekuće rezervacije">
+               <content>
+                  <ListView fx:id="lvTekuce" prefHeight="200.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+          <Tab fx:id="tabProtekle" onSelectionChanged="#popuniProtekle" text="Protekle rezervacije">
+               <content>
+                  <ListView fx:id="lvProtekle" prefHeight="200.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <ListView fx:id="lvStatus48" layoutX="235.0" layoutY="421.0" prefHeight="67.0" prefWidth="650.0" />
    </children>
 </AnchorPane>

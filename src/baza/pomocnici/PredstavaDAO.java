@@ -23,7 +23,7 @@ public class PredstavaDAO implements BazaCRUD<Predstava> {
                 predstava = new Predstava(
                         rs.getInt("id"),
                         rs.getString("naziv"),
-                        Zanr.valueOf(rs.getString("zanr")));
+                        Zanr.getEnum(rs.getInt("zanr")));
             }
         } catch (SQLException e) {
             e.printStackTrace();

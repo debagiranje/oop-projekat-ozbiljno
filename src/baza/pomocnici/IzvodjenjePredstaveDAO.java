@@ -8,8 +8,7 @@ import baza.*;
 
 public class IzvodjenjePredstaveDAO implements BazaCRUD<IzvodjenjePredstave> {
 
-    private PozoristeDAO pozoristeDAO;
-    private PredstavaDAO predstavaDAO;
+
 
     @Override
     public IzvodjenjePredstave vratiPoId(int id) {
@@ -22,10 +21,10 @@ public class IzvodjenjePredstaveDAO implements BazaCRUD<IzvodjenjePredstave> {
             if (rs.next()) {
                 izvodjenje = new IzvodjenjePredstave(
                         rs.getInt("id"),
-                        predstavaDAO.vratiPoId(rs.getInt("predstava_id")),
-                        pozoristeDAO.vratiPoId(rs.getInt("pozoriste_id")),
+                        (rs.getInt("predstava_id")),
+                        (rs.getInt("pozoriste_id")),
                         rs.getDouble("cijena"),
-                        rs.getTimestamp("datum_vrijeme").toLocalDateTime());
+                        rs.getTimestamp("datum_i_vrijeme").toLocalDateTime());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,10 +41,10 @@ public class IzvodjenjePredstaveDAO implements BazaCRUD<IzvodjenjePredstave> {
             while (rs.next()) {
                 IzvodjenjePredstave izvodjenje =  new IzvodjenjePredstave(
                         rs.getInt("id"),
-                        predstavaDAO.vratiPoId(rs.getInt("predstava_id")),
-                        pozoristeDAO.vratiPoId(rs.getInt("pozoriste_id")),
+                        (rs.getInt("predstava_id")),
+                        (rs.getInt("pozoriste_id")),
                         rs.getDouble("cijena"),
-                        rs.getTimestamp("datum_vrijeme").toLocalDateTime());
+                        rs.getTimestamp("datum_i_vrijeme").toLocalDateTime());
                 izvodjenja.add(izvodjenje);
             }
         } catch (SQLException e) {
@@ -58,8 +57,8 @@ public class IzvodjenjePredstaveDAO implements BazaCRUD<IzvodjenjePredstave> {
     public void azuriraj(IzvodjenjePredstave izvodjenje) {
         try {
             PreparedStatement ps = Veza.vratiVezu().prepareStatement("UPDATE izvodjenje_predstave SET predstava_id = ?, pozoriste_id = ?, cijena = ?, datum_i_vrijeme = ? WHERE id = ?");
-            ps.setInt(1, izvodjenje.getPredstavaID().getId());
-            ps.setInt(2, izvodjenje.getPozoristeID().getId());
+            ps.setInt(1, izvodjenje.getPredstava().getId());
+            ps.setInt(2, izvodjenje.getPozoriste().getId());
             ps.setDouble(3, izvodjenje.getCijena());
             ps.setTimestamp(4, Timestamp.valueOf(izvodjenje.getDatumVrijeme()));
             ps.setInt(5, izvodjenje.getId());
@@ -84,11 +83,10 @@ public class IzvodjenjePredstaveDAO implements BazaCRUD<IzvodjenjePredstave> {
     public void dodaj(IzvodjenjePredstave izvodjenje) {
         try {
             PreparedStatement ps = Veza.vratiVezu().prepareStatement("INSERT INTO izvodjenje_predstave (predstava_id, pozoriste_id, cijena, datum_i_vrijeme) VALUES (?, ?, ?, ?)");
-            ps.setInt(1, izvodjenje.getPredstavaID().getId());
-            ps.setInt(2, izvodjenje.getPozoristeID().getId());
+            ps.setInt(1, izvodjenje.getPredstava().getId());
+            ps.setInt(2, izvodjenje.getPozoriste().getId());
             ps.setDouble(3, izvodjenje.getCijena());
             ps.setTimestamp(4, Timestamp.valueOf(izvodjenje.getDatumVrijeme()));
-            ps.setInt(5, izvodjenje.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

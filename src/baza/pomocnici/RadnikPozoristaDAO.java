@@ -97,7 +97,6 @@ public class RadnikPozoristaDAO implements BazaCRUD<RadnikPozorista> {
             ps.setString(3, radnik.getKorisnickoIme());
             ps.setString(4, radnik.getLozinka());
             ps.setInt(5, radnik.getPozoristeID().getId());
-            ps.setInt(6, radnik.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

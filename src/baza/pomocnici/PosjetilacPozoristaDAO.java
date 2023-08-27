@@ -23,7 +23,7 @@ public class PosjetilacPozoristaDAO implements BazaCRUD<PosjetilacPozorista> {
                         rs.getInt("id"),
                         rs.getString("ime"),
                         rs.getString("prezime"),
-                        rs.getString("korisnicko_ime"),
+                        rs.getString("korisincko_ime"),
                         rs.getString("lozinka"));
             }
         } catch (SQLException e) {
@@ -45,9 +45,10 @@ public class PosjetilacPozoristaDAO implements BazaCRUD<PosjetilacPozorista> {
                         rs.getInt("id"),
                         rs.getString("ime"),
                         rs.getString("prezime"),
-                        rs.getString("korisnicko_ime"),
+                        rs.getString("korisincko_ime"),
                         rs.getString("lozinka"));
                 posjetioci.add(posjetilac);
+                System.out.println(posjetilac.toString());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -84,12 +85,11 @@ public class PosjetilacPozoristaDAO implements BazaCRUD<PosjetilacPozorista> {
     @Override
     public void dodaj(PosjetilacPozorista posjetilac) {
         try {
-            PreparedStatement ps = Veza.vratiVezu().prepareStatement("INSERT INTO posjetilac_pozorista (ime, prezime, korisnicko_ime, lozinka) VALUES (?,?,?,?)");
+            PreparedStatement ps = Veza.vratiVezu().prepareStatement("INSERT INTO posjetilac_pozorista (ime, prezime, korisincko_ime, lozinka) VALUES (?,?,?,?)");
             ps.setString(1, posjetilac.getIme());
             ps.setString(2, posjetilac.getPrezime());
             ps.setString(3, posjetilac.getKorisnickoIme());
             ps.setString(4, posjetilac.getLozinka());
-            ps.setInt(5, posjetilac.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

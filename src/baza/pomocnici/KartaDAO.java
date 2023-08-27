@@ -10,9 +10,6 @@ import modeli.Status;
 
 
 public class KartaDAO implements BazaCRUD<Karta>{
-	
-	private IzvodjenjePredstaveDAO izvodjenjeDAO;
-	private PosjetilacPozoristaDAO posjetilacDAO;
 
 	@Override
     public Karta vratiPoId(int id) {
@@ -26,9 +23,9 @@ public class KartaDAO implements BazaCRUD<Karta>{
             if (rs.next()) {
                 karta = new Karta(
                 		rs.getInt("id"),
-                		izvodjenjeDAO.vratiPoId(rs.getInt("izvodjenje_predstave_id")),
+                		(rs.getInt("izvodjenje_predstave_id")),
                 		Status.getEnum(rs.getInt("status")),
-                		posjetilacDAO.vratiPoId(rs.getInt("posjetilac_id")),
+                		(rs.getInt("posjetilac_id")),
             			rs.getInt("broj_karta"));
                 }
         } catch (SQLException e) {
@@ -47,9 +44,9 @@ public class KartaDAO implements BazaCRUD<Karta>{
             while (rs.next()) {
                 Karta karta = new Karta(
                 		rs.getInt("id"),
-                		izvodjenjeDAO.vratiPoId(rs.getInt("izvodjenje_predstave_id")),
+                		(rs.getInt("izvodjenje_predstave_id")),
                 		Status.getEnum(rs.getInt("status")),
-                		posjetilacDAO.vratiPoId(rs.getInt("posjetilac_id")),
+                		(rs.getInt("posjetilac_id")),
             			rs.getInt("broj_karta"));
                 karte.add(karta);
             }
@@ -63,9 +60,9 @@ public class KartaDAO implements BazaCRUD<Karta>{
     public void azuriraj(Karta karta) {
         try {
             PreparedStatement ps = Veza.vratiVezu().prepareStatement("UPDATE karta SET izvodjenje_predstave_id = ?, status = ?, posjetilac_id = ?, broj_karta = ? WHERE id = ?");
-            ps.setInt(1, karta.getIpID().getId());
+            ps.setInt(1, karta.getIp().getId());
             ps.setInt(2, karta.getStatus().getBroj());
-            ps.setInt(3, karta.getPpID().getId());
+            ps.setInt(3, karta.getPpID());
             ps.setInt(4, karta.getBrojKarta());
             ps.setInt(5, karta.getId());
             ps.executeUpdate();
@@ -89,9 +86,9 @@ public class KartaDAO implements BazaCRUD<Karta>{
     public void dodaj(Karta karta) {
         try {
             PreparedStatement ps = Veza.vratiVezu().prepareStatement("INSERT INTO karta (izvodjenje_predstave_id, status, posjetilac_id, broj_karta) VALUES (?, ?, ?, ?)");
-            ps.setInt(1, karta.getIpID().getId());
+            ps.setInt(1, karta.getIp().getId());
             ps.setInt(2, karta.getStatus().getBroj());
-            ps.setInt(3, karta.getPpID().getId());
+            ps.setInt(3, karta.getPpID());
             ps.setInt(4, karta.getBrojKarta());
             ps.executeUpdate();
         } catch (SQLException e) {

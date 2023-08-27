@@ -1,11 +1,5 @@
 package application;
-	
-import java.util.ArrayList;
 
-import baza.*;
-import baza.pomocnici.OsobljeDAO;
-import modeli.Osoblje;
-import modeli.Tip;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -18,13 +12,16 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/pogled/PosjetilacPogled.fxml"));
-			//FXMLLoader loader = new FXMLLoader(Main.class.getResource("pogled/LoginPogled.fxml"));
-			//loader.setRoot(new AnchorPane());			
-			Parent root =  loader.load();
+			//loader za login
+			FXMLLoader LoginLoader = new FXMLLoader(getClass().getResource("/pogled/LoginPogled.fxml"));		
+			
+			Parent root =  LoginLoader.load();
 			Scene scene = new Scene(root,900,600);
+			
+			primaryStage.setTitle("Pozoristance");
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -32,8 +29,6 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
-		
-		OsobljeDAO vezica = new OsobljeDAO();
-		
+				
 	}
 }

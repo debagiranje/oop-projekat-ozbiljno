@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Spinner?>
@@ -12,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #f2e9e4;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kontroleri.PosjetilacPogledController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #f2e9e4;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kontroleri.posjetilac.RezervisiController">
    <children>
       <Pane prefHeight="600.0" prefWidth="220.0" style="-fx-background-color: #22223b;">
          <children>
@@ -28,12 +27,12 @@
             </ImageView>
             <Button fx:id="btnKarte" layoutX="-6.0" layoutY="228.0" mnemonicParsing="false" onAction="#prebaciKarte" prefHeight="36.0" prefWidth="220.0" style="-fx-background-color: #22223b;" text="KARTE" textAlignment="CENTER" textFill="#f2e9e4">
                <font>
-                  <Font name="Segoe UI Bold Italic" size="18.0" />
+                  <Font name="Segoe UI Italic" size="18.0" />
                </font>
             </Button>
             <Button fx:id="btnPozorista" layoutX="-6.0" layoutY="282.0" mnemonicParsing="false" onAction="#prebaciPozorista" prefHeight="36.0" prefWidth="220.0" style="-fx-background-color: #22223b;" text="POZORIŠTA" textFill="#f2e9e4">
                <font>
-                  <Font name="Segoe UI Italic" size="18.0" />
+                  <Font name="Segoe UI Bold Italic" size="18.0" />
                </font>
             </Button>
             <Button fx:id="btnOsoblje" layoutX="-6.0" layoutY="335.0" mnemonicParsing="false" onAction="#prebaciOsoblje" prefHeight="36.0" prefWidth="220.0" style="-fx-background-color: #22223b;" text="OSOBLJE" textFill="#f2e9e4">
@@ -41,34 +40,38 @@
                   <Font name="Segoe UI Italic" size="18.0" />
                </font>
             </Button>
-            <Button id="BTNUloguj" fx:id="btnIzloguj" layoutX="44.0" layoutY="511.0" mnemonicParsing="false" onAction="#izloguj" prefHeight="49.0" prefWidth="120.0" style="-fx-background-color: #c9ada7; -fx-background-radius: 20;" text="IZLOGUJ ME" textFill="#22223b">
+            <Button id="BTNUloguj" fx:id="btnIzloguj" layoutX="44.0" layoutY="509.0" mnemonicParsing="false" onAction="#izloguj" prefHeight="49.0" prefWidth="120.0" style="-fx-background-color: #c9ada7; -fx-background-radius: 20;" text="IZLOGUJ ME" textFill="#22223b">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
             </Button>
          </children>
       </Pane>
-      <Label layoutX="236.0" layoutY="67.0" prefHeight="34.0" prefWidth="197.0" text="Vaše karte" textFill="#764f72" textOverrun="LEADING_ELLIPSIS">
+      <Label layoutX="236.0" layoutY="98.0" prefHeight="34.0" prefWidth="342.0" text="Informacije o izvođenju predstave" textFill="#764f72" textOverrun="LEADING_ELLIPSIS">
          <font>
-            <Font name="Segoe UI Bold" size="26.0" />
+            <Font name="Segoe UI Bold" size="20.0" />
          </font>
       </Label>
-      <HBox layoutX="236.0" layoutY="110.0" prefHeight="398.0" prefWidth="318.0">
+      <HBox layoutX="236.0" layoutY="140.0" prefHeight="182.0" prefWidth="626.0">
          <children>
-            <ListView fx:id="listaTrenutneK" onMouseClicked="#urediKarte" prefHeight="422.0" prefWidth="318.0" />
+            <ListView fx:id="infoRezervacija" onMouseClicked="#urediKarte" prefHeight="182.0" prefWidth="633.0" />
          </children>
       </HBox>
-      <Label layoutX="588.0" layoutY="67.0" prefHeight="34.0" prefWidth="229.0" text="Uredi rezervaciju" textFill="#764f72" textOverrun="LEADING_ELLIPSIS">
+      <Label layoutX="236.0" layoutY="33.0" prefHeight="34.0" prefWidth="229.0" text="Rezerviši karte" textFill="#764f72" textOverrun="LEADING_ELLIPSIS">
          <font>
             <Font name="Segoe UI Bold" size="26.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="comb" layoutX="627.0" layoutY="164.0" prefWidth="150.0" />
-      <Button id="BTNUloguj" fx:id="btnPotvrdiIzmjenu" layoutX="642.0" layoutY="396.0" mnemonicParsing="false" onAction="#potvrdiIzmjenu" prefHeight="49.0" prefWidth="120.0" style="-fx-background-color: #c9ada7; -fx-background-radius: 20;" text="POTVRDI" textFill="#22223b">
+      <Button id="BTNUloguj" fx:id="btnPotvrdiIzmjenu" layoutX="466.0" layoutY="507.0" mnemonicParsing="false" onAction="#potvrdiIzmjenu" prefHeight="49.0" prefWidth="120.0" style="-fx-background-color: #c9ada7; -fx-background-radius: 20;" text="POTVRDI" textFill="#22223b">
          <font>
             <Font name="Segoe UI Semibold" size="14.0" />
          </font>
       </Button>
-      <Spinner fx:id="spnBrojKarata" layoutX="627.0" layoutY="287.0" />
+      <Spinner fx:id="spnBrojKarata" editable="true" layoutX="451.0" layoutY="386.0" />
+      <Label layoutX="445.0" layoutY="345.0" prefHeight="34.0" prefWidth="166.0" text="Odaberi broj karata" textFill="#764f72" textOverrun="LEADING_ELLIPSIS">
+         <font>
+            <Font name="Segoe UI Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

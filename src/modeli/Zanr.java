@@ -33,7 +33,7 @@ public enum Zanr {
 			case 1: return "Komedija";
 			case 2: return "Farsa";
 			case 3: return "Satira";
-			case 4: return "Komedija restauracije";
+			case 4: return "Komedija Restauracije";
 			case 5: return "Tragedija";
 			case 6: return "Istorija";
 			case 7: return "Mjuzikl";
@@ -46,6 +46,18 @@ public enum Zanr {
 	}
 	public void setBroj(int broj) {
 		this.broj = broj;
+	}
+	static Zanr getEnum(String zanr) {
+		switch(zanr) {
+		case "Komedija": return Zanr.KOMEDIJA;
+		case "Farsa": return Zanr.FARSA;
+		case "Satira": return Zanr.SATIRA;
+		case "Komedija Restauracije": return Zanr.KOMEDIJA_RESTAURACIJE;
+		case "Tragedija": return Zanr.TRAGEDIJA;
+		case "Istorija": return Zanr.ISTORIJA;
+		case "Mjuzikl": return Zanr.MJUZIKL;
+		default: return NEDEF;
+	}
 	}
 
 }

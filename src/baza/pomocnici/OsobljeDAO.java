@@ -9,22 +9,29 @@ public class OsobljeDAO implements BazaCRUD<Osoblje>{
 
 	@Override
     public Osoblje vratiPoId(int id) {
+		Osoblje o = null;
         try {
+        	
             PreparedStatement preparedStatement = Veza.vratiVezu().prepareStatement("SELECT * FROM osoblje WHERE id = ?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                return new Osoblje(
+            //System.out.println("pozvan iz osoblje dao");
+            if(resultSet!=null) {
+            	System.out.println("nije null");
+            if(resultSet.next()) {
+                o = new Osoblje(
                         resultSet.getInt("id"),
                         resultSet.getString("ime"),
                         resultSet.getString("prezime"),
-                        Integer.parseInt(resultSet.getString("tip"))
+                        (resultSet.getInt("tip"))
                 );
-            }
+               //System.out.println(o.toString() + "pozvan iz osoblje dao");
+               
+            }}
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return o;
     }
 
     @Override
@@ -38,7 +45,7 @@ public class OsobljeDAO implements BazaCRUD<Osoblje>{
                         resultSet.getInt("id"),
                         resultSet.getString("ime"),
                         resultSet.getString("prezime"),
-                        Integer.parseInt(resultSet.getString("tip"))
+                        (resultSet.getInt("tip"))
                 ));
             }
         } catch (SQLException e) {
