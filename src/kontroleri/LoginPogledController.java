@@ -46,6 +46,14 @@ public class LoginPogledController implements Initializable{
 		
 		System.out.println(korisnickoIme);
 		
+		if(korisnickoIme.isEmpty() || passw.isEmpty())
+			PomocniKontroler.upozorenjeAlert("Unesite sve podatke!", "");
+		else
+		{
+		
+		passw = PomocniKontroler.getMd5(passw);
+		System.out.println(passw);
+		
 		PosjetilacPozorista pp = PosjetilacPozorista.pronadjiPosjetioca(korisnickoIme, passw);
 		RadnikPozorista rp = RadnikPozorista.pronadjiRadnika(korisnickoIme, passw);
 		
@@ -72,6 +80,7 @@ public class LoginPogledController implements Initializable{
 				tfKorisnickoIme.clear();
 				pfLozinka.clear();
 				System.out.println("nema tog korisnika -- dodaj alert");
+				PomocniKontroler.errorAlert("Nepostojeći korisnik!", "Provjerite korisničko ime i šifru.");
 			}
 		}
 		if(rp!=null)
@@ -90,7 +99,7 @@ public class LoginPogledController implements Initializable{
 			stage.show();
 			
 		}
-		
+		}
 		
 		}
 	// Event Listener on Button[#btnRegistruj].onAction

@@ -59,46 +59,48 @@ public class ProdajController implements Initializable{
 
 	public IzvodjenjePredstave ip;
 	
-	@FXML
-	public void oMeni(ActionEvent event) throws IOException {
-		PomocniKontroler help = new PomocniKontroler();
-		help.oMeniScena(event);
-	}
-	// Event Listener on Button[#btnKreiraj].onAction
-	@FXML
-	public void KreirajScena(ActionEvent event) throws IOException {
-		PomocniKontroler help = new PomocniKontroler();
-		help.kreirajScena(event);
-	}
-	// Event Listener on Button[#btnOsoblje].onAction
-	@FXML
-	public void osobljeScena(ActionEvent event) throws IOException {
-		PomocniKontroler help = new PomocniKontroler();
-		help.prebaciOsoblje(event);
-	}
-	// Event Listener on Button[#btnRezervacije].onAction
-	@FXML
-	public void rezervacijeScena(ActionEvent event) throws IOException {
-		PomocniKontroler help = new PomocniKontroler();
-		help.rezervacijaScena(event);
-	}
-	// Event Listener on Button[#btnPredstave].onAction
-	@FXML
-	public void predstaveScena(ActionEvent event) throws IOException {
-		PomocniKontroler help = new PomocniKontroler();
-		help.predstaveScena(event);
-	}
-	// Event Listener on Button[#btnIzvodjenja].onAction
-	@FXML
-	public void izvodjenjaScena(ActionEvent event) throws IOException {
-		PomocniKontroler help = new PomocniKontroler();
-		help.izvodjenjaScena(event);
-	}
-	@FXML
-	public void izloguj(ActionEvent event) throws IOException {
-		PomocniKontroler help = new PomocniKontroler();
-		help.izlogujScena(event);
-	}
+	// Event Listener on Button[#btnOmeni].onAction
+		@FXML
+		public void oMeni(ActionEvent event) throws IOException {
+			PomocniKontroler help = new PomocniKontroler();
+			help.oMeniScena(event);
+		}
+		// Event Listener on Button[#btnKreiraj].onAction
+		@FXML
+		public void KreirajScena(ActionEvent event) throws IOException {
+			PomocniKontroler help = new PomocniKontroler();
+			help.kreirajScena(event);
+		}
+		// Event Listener on Button[#btnOsoblje].onAction
+		@FXML
+		public void osobljeScena(ActionEvent event) throws IOException {
+			PomocniKontroler help = new PomocniKontroler();
+			help.osobljeScena(event);
+		}
+		// Event Listener on Button[#btnRezervacije].onAction
+		@FXML
+		public void rezervacijeScena(ActionEvent event) throws IOException {
+			PomocniKontroler help = new PomocniKontroler();
+			help.rezervacijaScena(event);
+		}
+		// Event Listener on Button[#btnPredstave].onAction
+		@FXML
+		public void predstaveScena(ActionEvent event) throws IOException {
+			PomocniKontroler help = new PomocniKontroler();
+			help.predstaveScena(event);
+		}
+		// Event Listener on Button[#btnIzvodjenja].onAction
+		@FXML
+		public void izvodjenjaScena(ActionEvent event) throws IOException {
+			PomocniKontroler help = new PomocniKontroler();
+			help.izvodjenjaScena(event);
+		}
+		@FXML
+		public void izloguj(ActionEvent event) throws IOException {
+			PomocniKontroler help = new PomocniKontroler();
+			help.izlogujScena(event);
+		}
+		
 	
 	// Event Listener on Button[#prodajKupac].onAction
 	@FXML
@@ -106,11 +108,16 @@ public class ProdajController implements Initializable{
 		
 		int br = brKarataKorisnici.getValue();
 		
-		Karta k = new Karta(ip.getId(), Status.KUPLJENA_NPA, 1, br);
-		Karta.ubaciMe(k);
-	
-		statusSjedista.setText(Karta.vratiBrojKarata(ip)+ " / " + ip.getPozoriste().getBrojSjedista());
-		brojSlobodnih.setText(ip.getPozoriste().getBrojSjedista()-Karta.vratiBrojKarata(ip) + "");
+		if(ip.getPozoriste().getBrojSjedista()-Karta.vratiBrojKarata(ip)-br <0)
+			PomocniKontroler.upozorenjeAlert("Nazalost, nemamo toliko karata na raspolaganju.", "");
+		else
+		{
+			Karta k = new Karta(ip.getId(), Status.KUPLJENA_NPA, 1, br);
+			Karta.ubaciMe(k);
+		
+			statusSjedista.setText(Karta.vratiBrojKarata(ip)+ " / " + ip.getPozoriste().getBrojSjedista());
+			brojSlobodnih.setText(ip.getPozoriste().getBrojSjedista()-Karta.vratiBrojKarata(ip) + "");
+		}
 		
 	}
 	// Event Listener on Button[#prodajKorisnici].onAction
@@ -123,13 +130,18 @@ public class ProdajController implements Initializable{
 		 
 		PosjetilacPozorista pp = PosjetilacPozorista.vratiPoKorisnickom(korisnicko[1]);
 		
-		Karta k = new Karta(ip.getId(), Status.REZERVISANA_P, pp.getId(), br);
-		Karta.ubaciMe(k);
-	
-		lvKorisnici.getItems().clear();
-		lvKorisnici.getItems().addAll(Karta.vratiKorisnikeZaRez(ip));
-		statusSjedista.setText(Karta.vratiBrojKarata(ip)+ " / " + ip.getPozoriste().getBrojSjedista());
-		brojSlobodnih.setText(ip.getPozoriste().getBrojSjedista()-Karta.vratiBrojKarata(ip) + "");
+		if(ip.getPozoriste().getBrojSjedista()-Karta.vratiBrojKarata(ip)-br <0)
+			PomocniKontroler.upozorenjeAlert("Nazalost, nemamo toliko karata na raspolaganju.", "");
+		else
+		{
+			Karta k = new Karta(ip.getId(), Status.REZERVISANA_P, pp.getId(), br);
+			Karta.ubaciMe(k);
+		
+			lvKorisnici.getItems().clear();
+			lvKorisnici.getItems().addAll(Karta.vratiKorisnikeZaRez(ip));
+			statusSjedista.setText(Karta.vratiBrojKarata(ip)+ " / " + ip.getPozoriste().getBrojSjedista());
+			brojSlobodnih.setText(ip.getPozoriste().getBrojSjedista()-Karta.vratiBrojKarata(ip) + "");
+		}
 		
 	}
 	public void initData(IzvodjenjePredstave ip) {

@@ -20,7 +20,7 @@ import modeli.Karta;
 import modeli.PosjetilacPozorista;
 import modeli.Status;
 
-public class RezervisiController implements Initializable{
+public class UrediRezervacijuController implements Initializable{
 	@FXML
 	private Button btnKarte;
 	@FXML
@@ -43,7 +43,12 @@ public class RezervisiController implements Initializable{
 	private Label lblNaziv;
 	@FXML
 	private Label lblDatum11;
-	private IzvodjenjePredstave ip;
+	@FXML
+	private Label lblBrKarata;
+	@FXML
+	private Label lblDatum111;
+
+	private Karta k;
 
 	// Event Listener on Button[#btnKarte].onAction
 		@FXML
@@ -73,34 +78,33 @@ public class RezervisiController implements Initializable{
 		// Event Listener on Button[#btnPotvrdiIzmjenu].onAction
 		@FXML
 		public void potvrdiIzmjenu(ActionEvent event) {
-			
-			if(PosjetilacPozorista.trenutni!=null && ip.getPozoriste().brKarataValidan(spnBrojKarata.getValue())==true && ip.datumIstekao(ip)==false)
+			if(spnBrojKarata.getValue()>k.getBrojKarta())
+				PomocniKontroler.errorAlert("Unesite ispravan broj karata za otkazati", null);
+			else if(spnBrojKarata.getValue()==k.getBrojKarta())
 			{
-				
-				int br_sjedista = ip.getPozoriste().getBrojSjedista();
-				if(ip.getPozoriste().getBrojSjedista()-Karta.vratiBrojKarata(ip)-spnBrojKarata.getValue() <0)
-					PomocniKontroler.upozorenjeAlert("Nazalost, nemamo toliko karata na raspolaganju.", "");
-				else {
-					Karta k = new Karta(ip.getId(), Status.REZERVISANA_NP, PosjetilacPozorista.trenutni.getId(), spnBrojKarata.getValue());
-					Karta.ubaciMe(k);
-					ip.umanjiBrojNezauzetih(spnBrojKarata.getValue());
-					PomocniKontroler.juhuAlert("jupi!  rezervisano");
-				}
+				Karta.promijeniBrojKarata2(k, spnBrojKarata.getValue());
+				lblBrKarata.setText(k.getBrojKarta() + "");
+				PomocniKontroler.juhuAlert("Uspjesno obrisana rezervacija");
 			}
 			else
 			{
-				if(ip.datumIstekao(ip))
-					PomocniKontroler.errorAlert("datum istekao, odaberite drugu predstavu", null);
+				Karta.promijeniBrojKarata2(k, spnBrojKarata.getValue());
+				lblBrKarata.setText(k.getBrojKarta() + "");
+				PomocniKontroler.juhuAlert("Uspjesno izmijenjena rezervacija");
 			}
+			
 		}
 		
-		public void initIzvodjenje(IzvodjenjePredstave 	ip) {
-			this.ip = ip;
+		public void initIzvodjenje(Karta k) {
+			this.k = k;
 			
-			lblNaziv.setText(ip.getPredstava().getNaziv());
-			lblCijena.setText(ip.getCijena() + "");
-			lblDatum.setText(ip.getDatum().toString());
-			lblVrijeme.setText(ip.getVrijeme().toString());
+			System.out.println(k.KartaInfo());
+			
+			lblNaziv.setText(k.getIp().getPredstava().getNaziv());
+			lblCijena.setText(k.getIp().getCijena() + "");
+			lblDatum.setText(k.getIp().getDatum().toString());
+			lblVrijeme.setText(k.getIp().getVrijeme().toString());
+			lblBrKarata.setText(k.getBrojKarta() + "");
 		}
 		
 		

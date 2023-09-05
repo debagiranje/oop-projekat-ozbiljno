@@ -110,7 +110,7 @@
             <Font name="Segoe UI Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="lblAutor" layoutX="247.0" layoutY="376.0" onMouseClicked="#oOsoblju" prefHeight="34.0" prefWidth="210.0" text="Mirko Mirkovic" textFill="#764f72" textOverrun="LEADING_ELLIPSIS">
+      <Label fx:id="lblAutor" layoutX="247.0" layoutY="376.0" onMouseClicked="#oAutoru" prefHeight="34.0" prefWidth="210.0" text="Mirko Mirkovic" textFill="#764f72" textOverrun="LEADING_ELLIPSIS">
          <font>
             <Font name="Segoe UI Bold" size="18.0" />
          </font>
@@ -120,7 +120,7 @@
             <Font name="Segoe UI Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="lblReziser" layoutX="247.0" layoutY="452.0" onMouseClicked="#oOsoblju" prefHeight="34.0" prefWidth="210.0" text="Kventin Tarantino II" textFill="#764f72" textOverrun="LEADING_ELLIPSIS">
+      <Label fx:id="lblReziser" layoutX="247.0" layoutY="452.0" onMouseClicked="#oGlumcu" prefHeight="34.0" prefWidth="210.0" text="Kventin Tarantino II" textFill="#764f72" textOverrun="LEADING_ELLIPSIS">
          <font>
             <Font name="Segoe UI Bold" size="18.0" />
          </font>

@@ -29,6 +29,8 @@ public class Karta {
 	public static ArrayList<String> posjetiociRezervacijeNjihove = new ArrayList<>();
 	public static ArrayList<Karta> rezervacijeNjihoveLista = new ArrayList<>();
 	
+	public static Karta trenutno = null;
+	
 	public int getId() {
 		return id;
 	}
@@ -72,7 +74,11 @@ public class Karta {
 	}
 	@Override
 	public String toString() {
-		return pp.toString() + ". Broj rezervisanih karata je: "+ brojKarta + ". ";
+		return pp.toString() + " Broj rezervisanih karata je: "+ brojKarta + ". ";
+	}
+	
+	public String KartaInfo() {
+		return ip.toString() + " Broj rezervisanih karata je: "+ brojKarta + ". ";
 	}
 	public void setBrojKarta(int brojKarta) {
 		this.brojKarta = brojKarta;
@@ -115,7 +121,7 @@ public class Karta {
 		{
 			for(Karta i: sveKarte)
 			{
-				if(i.ip.getId()==izvodjenje.getId())
+				if(i.ip.getId()==izvodjenje.getId() && i.getStatus()!=Status.REZERVISANA_NP)  // samo kupljene i preuzete
 				{
 					if(i.pp.getId()!=1)
 						sveRezervacije.add(i.toString());
@@ -271,6 +277,40 @@ public class Karta {
 				
 			}
 		}
+	}
+	
+	public static void promijeniBrojKarata2(Karta kk, int broj)
+	{
+
+				if(kk.brojKarta==broj)
+					kDAO.obrisiPoId(kk.getId());
+				else
+				{
+					kk.brojKarta -= broj;
+					kDAO.azuriraj(kk);
+				}
+				
+	
+	}
+	
+	public static void vratiIzStringa(String Naziv)
+	{
+		sveKarte = kDAO.vratiSve();
+		System.out.println(Naziv + "iz vrati iz stringa, yippee");
+		for(Karta k : sveKarte)
+		{
+			System.out.println(Naziv + "--" + k.KartaInfo());
+			if(k.KartaInfo().equals(Naziv))
+			{
+				//if(unikatnoIzvodjenje(i) == true)
+					trenutno = k;
+				//else
+					//trenutno = null;
+				
+			}
+		}
+		//return trenutno;
+		
 	}
 
 }

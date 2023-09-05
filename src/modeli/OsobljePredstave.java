@@ -22,13 +22,15 @@ public class OsobljePredstave {
 	private static ArrayList<String> listaOsoblja = new ArrayList<>();
 	private static ArrayList<OsobljePredstave> sve = new ArrayList<>();
 	
-	
+	private static ArrayList<String> predstave = new ArrayList<>();
 	
 	public static Map<String, Integer> autori = new HashMap<String, Integer>();
 	public static Map<String, Integer> reziseri = new HashMap<String, Integer>();
 	public static Map<String, Integer> glumci = new HashMap<String, Integer>();
 	
 	private static ArrayList<OsobljePredstave> lista = new ArrayList<>();
+	
+	public static OsobljePredstave trenutno = null;
 	
 	
 	public OsobljePredstave(int id, int osoblje, int predstava) {
@@ -208,7 +210,7 @@ public class OsobljePredstave {
 	
 	public static void dodajGlumce(ArrayList<String> glumci, int pID)
 	{
-		DAO.obrisiPoPredstavi(pID);
+		//DAO.obrisiPoPredstavi(pID);
 		
 		for(String g : glumci)
 		{
@@ -279,5 +281,52 @@ public class OsobljePredstave {
 				
 		}
 	
+	public static void izStringa(String str)
+	{
+		sve = DAO.vratiSve();
+	
+		
+		for(OsobljePredstave o: sve)
+		{
+			if(o.imePrezimeTip().equals(str))
+			{
+				trenutno = o;
+			}
+		}
+		
+		
+	}
+	
+	public static void izStringa(String str, int br)
+	{
+		sve = DAO.vratiSve();
+	
+		String s = str +  ", " + Tip.getString(br);
+		for(OsobljePredstave o: sve)
+		{
+			if(o.imePrezimeTip().equals(s))
+			{
+				trenutno = o;
+			}
+		}
+		
+		
+	}
+	
+	public static ArrayList<String> vratiPredstave(OsobljePredstave oo)
+	{
+		sve = DAO.vratiSve();
+		predstave.clear();
+		
+		for(OsobljePredstave o: sve)
+		{
+			if(o.OsobljeID.getId() == oo.OsobljeID.getId())
+			{
+				predstave.add(o.getPredstavaID().getNaziv());
+			}
+		}
+		return predstave;
+		
+	}
 
 }

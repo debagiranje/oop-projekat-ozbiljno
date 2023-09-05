@@ -1,6 +1,9 @@
 package kontroleri;
 
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -240,4 +243,61 @@ public class PomocniKontroler {
 	 
 	        return m.matches();
 	    }
+		
+		// hashko besramno pokupljen sa gfg pt 2
+		
+		public static String getMd5(String input)
+	    {
+	        try {
+	 
+	            // Static getInstance method is called with hashing MD5
+	            MessageDigest md = MessageDigest.getInstance("MD5");
+	 
+	            // digest() method is called to calculate message digest
+	            // of an input digest() return array of byte
+	            byte[] messageDigest = md.digest(input.getBytes());
+	 
+	            // Convert byte array into signum representation
+	            BigInteger no = new BigInteger(1, messageDigest);
+	 
+	            // Convert message digest into hex value
+	            String hashtext = no.toString(16);
+	            while (hashtext.length() < 32) {
+	                hashtext = "0" + hashtext;
+	            }
+	            return hashtext;
+	        }
+	 
+	        // For specifying wrong message digest algorithms
+	        catch (NoSuchAlgorithmException e) {
+	            throw new RuntimeException(e);
+	        }
+	    }
+		
+		public static boolean isValidTime(String str)
+	    {
+	        // Regex to check valid Time
+	        String regex
+	            = "^(?:[01]?[0-9]|2[0-3]):[0-5]?[0-9](?::[0-5]?[0-9])?$";
+	 
+	        // Compile the ReGex
+	        Pattern p = Pattern.compile(regex);
+	 
+	        // If the str
+	        // is empty return false
+	        if (str == null) {
+	            return false;
+	        }
+	 
+	        // Pattern class contains matcher()
+	        // method to find matching between
+	        // given str using regex.
+	        Matcher m = p.matcher(str);
+	 
+	        // Return if the str
+	        // matched the ReGex
+	        return m.matches();
+	    }
+	 
 }
+

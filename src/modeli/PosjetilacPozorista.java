@@ -153,7 +153,7 @@ public class PosjetilacPozorista extends Korisnik{
 				if (k.getPpID() == trenutni.id)
 				{
 					if((k.getIp().getDatum().compareTo(danas))>=0) {
-						mojeKarte.add(ctr + ": " + k.toString());
+						mojeKarte.add(k.KartaInfo());
 						ctr++;
 					}
 				}
@@ -181,7 +181,7 @@ public class PosjetilacPozorista extends Korisnik{
 				if (k.getPpID() == trenutni.id)
 				{
 					if((k.getIp().getDatum().compareTo(danas))<0) {
-						mojeKarteP.add(ctr + ": " + k.toString());
+						mojeKarteP.add(k.KartaInfo());
 						ctr++;
 					}
 				}
