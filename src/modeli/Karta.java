@@ -1,5 +1,6 @@
 package modeli;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import baza.pomocnici.IzvodjenjePredstaveDAO;
@@ -221,6 +222,37 @@ public class Karta {
 		
 	}
 	
+	public static ArrayList<String> vratiPosjetioceRezervacijaMP()
+	{
+		posjetiociRezervacije.clear();
+		sveKarte = kDAO.vratiSve();
+		sviPosjetioci = ppDAO.vratiSve();
+		
+		int flag = 0;
+		
+		for(PosjetilacPozorista pp: sviPosjetioci)
+		{
+			for(Karta k: sveKarte)
+			{
+				if(k.pp.getId() == pp.getId())
+				{
+					if(k.getStatus()==Status.REZERVISANA_NP && flag==0)
+					{
+						if(k.getIp().getPozoriste().getId() == RadnikPozorista.trenutni.getPozoristeID().getId())
+						{
+							posjetiociRezervacije.add(pp.toString());
+							flag = 1;
+						}
+					}
+				}
+			}
+			flag = 0;
+		}
+		
+		return posjetiociRezervacije;
+		
+	}
+	
 	public static ArrayList<String> vratiNepreuzeteRezervacijePosjetioca(PosjetilacPozorista pp)
 	{
 		posjetiociRezervacijeNjihove.clear();
@@ -312,5 +344,16 @@ public class Karta {
 		//return trenutno;
 		
 	}
-
+	
+	public static boolean is48h(Karta k)
+	{
+		sveKarte = kDAO.vratiSve();
+		
+		LocalDate danas = LocalDate.now();
+		if(k.getIp().getDatum().equals(danas.plusDays(2)) || k.getIp().getDatum().equals(danas.plusDays(1)) || k.getIp().getDatum().equals(danas)){
+			return true;
+		}
+		return false;
+		
+	}
 }

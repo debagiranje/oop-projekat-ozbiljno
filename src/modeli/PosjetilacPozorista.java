@@ -206,14 +206,14 @@ public class PosjetilacPozorista extends Korisnik{
 		{
 			for(Karta i: sveKarte)
 			{
-				
+				if (i.getPpID() == trenutni.id) {
 					if(i.getIp().getDatum().equals(danas.plusDays(2)) || i.getIp().getDatum().equals(danas.plusDays(1)) || i.getIp().getDatum().equals(danas)){
 						lista48.add(i.getIp().toRadnikRepertoar());
 						ctr++;
 						System.out.println(i.getIp().toRadnikRepertoar()+ "ajmo mali" + ctr);
 						
 					}
-				
+				}
 			}
 		}
 		

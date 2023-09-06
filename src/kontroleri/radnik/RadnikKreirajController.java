@@ -183,6 +183,7 @@ public class RadnikKreirajController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		cbPozoriste.setItems(Pozoriste.vratiPozoristaRadniku());
+		nazivPozorista.setText(RadnikPozorista.trenutni.getPozoristeID().getNaziv());
 		
 		
 	}

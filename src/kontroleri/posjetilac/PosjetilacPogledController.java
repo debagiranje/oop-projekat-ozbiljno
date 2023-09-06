@@ -88,19 +88,25 @@ public class PosjetilacPogledController implements Initializable {
 		// Event Listener on Button[#btnUpravljajRez].onAction
 		@FXML
 		public void upravljajRezervacijama(ActionEvent event) throws IOException {
-			FXMLLoader RLoader = new FXMLLoader();
-			RLoader.setLocation(getClass().getResource("/pogled/posjetilac/UrediRezervaciju.fxml"));
-			root =  RLoader.load();
-			
-			UrediRezervacijuController rc = RLoader.getController();
-			//System.out.println(lvPredstave.getSelectionModel().getSelectedItem());
 			Karta.vratiIzStringa(lvTekuce.getSelectionModel().getSelectedItem());
-			rc.initIzvodjenje(Karta.trenutno);
-			
-			stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-			scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
+			if(Karta.is48h(Karta.trenutno)==false)
+			{
+				
+				FXMLLoader RLoader = new FXMLLoader();
+				RLoader.setLocation(getClass().getResource("/pogled/posjetilac/UrediRezervaciju.fxml"));
+				root =  RLoader.load();
+				
+				UrediRezervacijuController rc = RLoader.getController();
+				//System.out.println(lvPredstave.getSelectionModel().getSelectedItem());
+				rc.initIzvodjenje(Karta.trenutno);
+				
+				stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+				scene = new Scene(root);
+				stage.setScene(scene);
+				stage.show();
+			}
+			else
+				PomocniKontroler.upozorenjeAlert("Ostalo je manje od 48h! Nema izmjena...", null);
 		}
 		public void initPosjetilac() {
 			lvTekuce.getItems().addAll(PosjetilacPozorista.vratiMojeTekuceKarte());

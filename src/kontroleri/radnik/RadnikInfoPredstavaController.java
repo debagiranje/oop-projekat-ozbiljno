@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import kontroleri.PomocniKontroler;
 import modeli.IzvodjenjePredstave;
 import modeli.OsobljePredstave;
+import modeli.RadnikPozorista;
 import modeli.Zanr;
 
 public class RadnikInfoPredstavaController implements Initializable{
@@ -128,6 +129,8 @@ public class RadnikInfoPredstavaController implements Initializable{
 			lblReziser.setText(OsobljePredstave.vratiRezisera(ip.getPredstava().getId()));
 			
 			lvGlumci.getItems().addAll(OsobljePredstave.vratiGlumce(ip.getPredstava().getId()));
+			
+			nazivPozorista.setText(RadnikPozorista.trenutni.getPozoristeID().getNaziv());
 		}
 		
 		public void initData(IzvodjenjePredstave ip) {

@@ -21,6 +21,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import kontroleri.PomocniKontroler;
 import modeli.Karta;
 import modeli.PosjetilacPozorista;
+import modeli.RadnikPozorista;
 
 public class RadnikRezervisiController implements Initializable{
 	@FXML
@@ -121,8 +122,8 @@ public class RadnikRezervisiController implements Initializable{
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		lvKorisnici.getItems().addAll(Karta.vratiPosjetioceRezervacija());
-		
+		lvKorisnici.getItems().addAll(Karta.vratiPosjetioceRezervacijaMP());
+		nazivPozorista.setText(RadnikPozorista.trenutni.getPozoristeID().getNaziv());
 		
 		lvKorisnici.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 

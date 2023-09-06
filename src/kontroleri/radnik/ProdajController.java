@@ -20,6 +20,7 @@ import kontroleri.PomocniKontroler;
 import modeli.IzvodjenjePredstave;
 import modeli.Karta;
 import modeli.PosjetilacPozorista;
+import modeli.RadnikPozorista;
 import modeli.Status;
 
 
@@ -169,6 +170,8 @@ public class ProdajController implements Initializable{
 		valueFactory.setValue(1);
 		brKarataKupac.setValueFactory(valueFactory);
 		brKarataKorisnici.setValueFactory(valueFactory);
+		
+		nazivPozorista.setText(RadnikPozorista.trenutni.getPozoristeID().getNaziv());
 		
 		
 	}

@@ -120,11 +120,12 @@ public class OMeniController implements Initializable{
 	@FXML
 	public void potvrdi(ActionEvent event) {
 		
+		
 		if(pfStara.getText().isEmpty() || pfNova.getText().isEmpty() || pfPotvrdiNovu.getText().isEmpty())
 		{
 			PomocniKontroler.upozorenjeAlert("Unesite sve sifre!", null);
 		}
-		else if(!pfStara.getText().equals(RadnikPozorista.trenutni.getLozinka()))
+		else if(!PomocniKontroler.getMd5(pfStara.getText()).equals(RadnikPozorista.trenutni.getLozinka()))
 		{
 			PomocniKontroler.upozorenjeAlert("Stara lozinka nije u redu!", null);
 			pfStara.clear();
@@ -149,7 +150,7 @@ public class OMeniController implements Initializable{
 		}
 		else
 		{
-			RadnikPozorista.azurirajLozinku(pfNova.getText());
+			RadnikPozorista.azurirajLozinku(PomocniKontroler.getMd5(pfNova.getText()));
 			PomocniKontroler.juhuAlert("Promijenili ste lozinku :)");
 			pfStara.clear();
 			pfNova.clear();

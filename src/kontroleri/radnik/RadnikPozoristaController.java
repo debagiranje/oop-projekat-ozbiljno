@@ -228,7 +228,7 @@ public class RadnikPozoristaController implements Initializable{
 	{
 		lvPredstave.getItems().setAll(Predstava.vratiPredstavu());
 		cbZanr.setItems(Pozoriste.vratiZanrove());
-		
+		nazivPozorista.setText(RadnikPozorista.trenutni.getPozoristeID().getNaziv());
 		
 		
 		/////// autor

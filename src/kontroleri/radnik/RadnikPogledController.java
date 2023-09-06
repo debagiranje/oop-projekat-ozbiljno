@@ -185,7 +185,7 @@ public class RadnikPogledController implements Initializable{
 			}	
 
 			});
-
+		
 		
 	}
 	// Event Listener on Button[#btnInfo].onAction

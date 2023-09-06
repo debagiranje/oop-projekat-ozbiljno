@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import kontroleri.PomocniKontroler;
 import modeli.OsobljePredstave;
+import modeli.RadnikPozorista;
 
 public class RadnikOsobljeController implements Initializable{
 	@FXML
@@ -105,5 +106,6 @@ public class RadnikOsobljeController implements Initializable{
 			    .map(Map.Entry::getKey)
 			    .collect(Collectors.toList()));
 		
+		nazivPozorista.setText(RadnikPozorista.trenutni.getPozoristeID().getNaziv());
 	}
 }
